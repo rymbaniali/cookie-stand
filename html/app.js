@@ -1,5 +1,6 @@
 'use strict';
 let workingHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+// let totalSum=0;
 
 let Seattle = {
     name: 'Seattle',
@@ -8,6 +9,7 @@ let Seattle = {
     AvgCookieSale: 6.3,
     getRandoNumOfCustArr: [],
     avgAmountPerHourArr: [],
+    totalSum:0,
 
 
 
@@ -29,10 +31,13 @@ let Seattle = {
 
             // console.log(i);
 
+            this.totalSum=this.totalSum+ this.avgAmountPerHourArr[i];
+            console.log("this is total sum ", this.totalSum);
 
         }
 
     }
+
 }
 // console.log(Seattle.avgAmountperHourArr);
 
@@ -62,8 +67,12 @@ for (let i = 0; i < workingHours.length; i++) {
     ulElement.appendChild(liElement);
     liElement.textContent = `${workingHours[i]}  ${Seattle.avgAmountPerHourArr[i]} cookies`;
 
-}
+} 
+let totalLiElement = document.createElement('li');
+ulElement.appendChild(totalLiElement);
+totalLiElement.textContent = `This is the total sum : ${Seattle.totalSum}`;
 
+// totalSum=totalSum+Seattle.avgAmountperHour
 
 
 // console.log(liElement);
@@ -80,7 +89,7 @@ let Tokyo = {
     AvgCookieSale: 1.2,
     getRandoNumOfCustArr: [],
     avgAmountPerHourArr: [],
-
+    totalSum:0,
 
 
     getRandoNumOfCust: function () {
@@ -99,7 +108,9 @@ let Tokyo = {
 
             console.log(this.avgAmountPerHourArr[i]);
 
-            // console.log(i);
+            this.totalSum=this.totalSum+ this.avgAmountPerHourArr[i];
+            console.log("this is total sum ", this.totalSum);
+            
 
 
         }
@@ -131,7 +142,9 @@ for (let i = 0; i < workingHours.length; i++) {
     tokyoUlElement.appendChild(liElement);
     liElement.textContent = `${workingHours[i]}  ${Tokyo.avgAmountPerHourArr[i]} cookies`;
 }
-
+let totalLiElement2 = document.createElement('li');
+tokyoUlElement.appendChild(totalLiElement2);
+totalLiElement2.textContent = `This is the total sum : ${Tokyo.totalSum}`;
 
 
 //Dubai:
@@ -143,6 +156,7 @@ let Dubai = {
     AvgCookieSale: 3.7,
     getRandoNumOfCustArr: [],
     avgAmountPerHourArr: [],
+    totalSum:0,
 
 
 
@@ -163,7 +177,8 @@ let Dubai = {
             console.log(this.avgAmountPerHourArr[i]);
 
             // console.log(i);
-
+            this.totalSum=this.totalSum+ this.avgAmountPerHourArr[i];
+            console.log("this is total sum ", this.totalSum);
 
         }
 
@@ -194,6 +209,9 @@ for (let i = 0; i < workingHours.length; i++) {
     dubaiUlElement.appendChild(liElement);
     liElement.textContent = `${workingHours[i]}  ${Dubai.avgAmountPerHourArr[i]} cookies`;
 }
+let totalLiElement3 = document.createElement('li');
+dubaiUlElement.appendChild(totalLiElement3);
+totalLiElement3.textContent = `This is the total sum : ${Dubai.totalSum}`;
 
 
 //Paris:
@@ -205,7 +223,7 @@ let Paris = {
     AvgCookieSale: 2.3,
     getRandoNumOfCustArr: [],
     avgAmountPerHourArr: [],
-
+    totalSum:0,
 
 
     getRandoNumOfCust: function () {
@@ -224,7 +242,8 @@ let Paris = {
 
             console.log(this.avgAmountPerHourArr[i]);
 
-            // console.log(i);
+            this.totalSum=this.totalSum+ this.avgAmountPerHourArr[i];
+            console.log("this is total sum ", this.totalSum);
 
 
         }
@@ -254,5 +273,79 @@ for (let i = 0; i < workingHours.length; i++) {
 
     let liElement = document.createElement('li');
     parisUlElement.appendChild(liElement);
-    liElement.textContent = `${workingHours[i]}  ${Dubai.avgAmountPerHourArr[i]} cookies`;
+    liElement.textContent = `${workingHours[i]}  ${Paris.avgAmountPerHourArr[i]} cookies`;
 }
+let totalLiElement4 = document.createElement('li');
+parisUlElement.appendChild(totalLiElement4);
+totalLiElement4.textContent = `This is the total sum : ${Paris.totalSum}`;
+
+
+
+
+//Lima:
+
+
+let Lima = {
+    name: 'Lima',
+    minHourlyCust: 20,
+    maxHourlyCust: 38,
+    AvgCookieSale: 2.3,
+    getRandoNumOfCustArr: [],
+    avgAmountPerHourArr: [],
+    totalSum:0,
+
+
+    getRandoNumOfCust: function () {
+        for (let i = 0; i < workingHours.length; i++) {
+
+            this.getRandoNumOfCustArr.push(Math.floor(Math.random() * (this.maxHourlyCust - this.minHourlyCust)) + this.minHourlyCust);
+            console.log(this.getRandoNumOfCustArr[i]);
+
+        }
+
+    },
+    avgAmountperHour: function () {
+        for (let i = 0; i < workingHours.length; i++) {
+
+            this.avgAmountPerHourArr.push(Math.floor(this.getRandoNumOfCustArr[i] * this.AvgCookieSale));
+
+            console.log(this.avgAmountPerHourArr[i]);
+
+            this.totalSum=this.totalSum+ this.avgAmountPerHourArr[i];
+            console.log("this is total sum ", this.totalSum);
+            
+
+
+        }
+
+    }
+}
+
+
+Lima.getRandoNumOfCust();
+Lima.avgAmountperHour();
+
+
+let limaDiv = document.getElementById('Lima');
+
+let limaTitle = document.createElement('h2');
+
+limaDiv.appendChild(limaTitle);
+
+limaTitle.textContent = `${Lima.name}`;
+
+let limaUlElement = document.createElement('ul');
+limaDiv.appendChild(limaUlElement);
+
+
+
+for (let i = 0; i < workingHours.length; i++) {
+
+    let liElement = document.createElement('li');
+    limaUlElement.appendChild(liElement);
+    liElement.textContent = `${workingHours[i]}  ${Lima.avgAmountPerHourArr[i]} cookies`;
+}
+
+let totalLiElement5 = document.createElement('li');
+limaUlElement.appendChild(totalLiElement5);
+totalLiElement5.textContent = `This is the total sum : ${Lima.totalSum}`;
