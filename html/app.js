@@ -134,50 +134,64 @@ for (let i = 0; i < workingHours.length; i++) {
 
 
 
+//Dubai:
 
-// // console.log(Seattle.avgAmountperHourArr);
-
-
-// let mainDiv = document.getElementById('Seattle');
-
-
-// let cookieTitle = document.createElement('h2');
-// mainDiv.appendChild(cookieTitle);
-// cookieTitle.textContent = `${Seattle.name}`;
-
-// let ulElement = document.createElement('ul');
-// mainDiv.appendChild(ulElement);
+let Dubai = {
+    name: 'Dubai',
+    minHourlyCust: 11,
+    maxHourlyCust: 38,
+    AvgCookieSale: 3.7,
+    getRandoNumOfCustArr: [],
+    avgAmountPerHourArr: [],
 
 
 
-// for (let i = 0; i < workingHours.length; i++) {
+    getRandoNumOfCust: function () {
+        for (let i = 0; i < workingHours.length; i++) {
 
-//     let liElement = document.createElement('li');
-//     ulElement.appendChild(liElement);
-//     liElement.textContent = `${workingHours[i]}  ${Seattle.avgAmountPerHourArr[i]} cookies`;
+            this.getRandoNumOfCustArr.push(Math.floor(Math.random() * (this.maxHourlyCust - this.minHourlyCust)) + this.minHourlyCust);
+            console.log(this.getRandoNumOfCustArr[i]);
 
-// }
+        }
 
+    },
+    avgAmountperHour: function () {
+        for (let i = 0; i < workingHours.length; i++) {
 
-// // let tokyoDiv= document.getElementById('Tokyo');
-// // let render= function (){
+            this.avgAmountPerHourArr.push(Math.floor(this.getRandoNumOfCustArr[i] * this.AvgCookieSale));
 
-// // let tokyoTitle =document.createElement('h2');
+            console.log(this.avgAmountPerHourArr[i]);
 
-// // tokyoDiv.appendChild(tokyoTitle);
-
-// // tokyoTitle.textContent=`${Tokyo.name}`;
-
-// // let tokyoUlElement = document.createElement('ul');
-// // tokyoDiv.appendChild(tokyoUlElement);
+            // console.log(i);
 
 
+        }
 
-// // for (let i = 0; i < workingHours.length; i++) {
+    }
+}
 
-// //     let liElement = document.createElement('li');
-// //     tokyoUlElement.appendChild(liElement);
-// //     liElement.textContent= `${workingHours[i]}  ${Tokyo.avgAmountPerHourArr[i]} cookies`;
 
-// // }
-// // }
+Dubai.getRandoNumOfCust();
+Dubai.avgAmountperHour();
+
+
+let dubaiDiv = document.getElementById('Dubai');
+
+let dubaiTitle = document.createElement('h2');
+
+dubaiDiv.appendChild(dubaiTitle);
+
+dubaiTitle.textContent = `${Dubai.name}`;
+
+let dubaiUlElement = document.createElement('ul');
+dubaiDiv.appendChild(dubaiUlElement);
+
+
+
+for (let i = 0; i < workingHours.length; i++) {
+
+    let liElement = document.createElement('li');
+    dubaiUlElement.appendChild(liElement);
+    liElement.textContent = `${workingHours[i]}  ${Dubai.avgAmountPerHourArr[i]} cookies`;
+}
+
