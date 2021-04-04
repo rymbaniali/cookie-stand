@@ -195,3 +195,64 @@ for (let i = 0; i < workingHours.length; i++) {
     liElement.textContent = `${workingHours[i]}  ${Dubai.avgAmountPerHourArr[i]} cookies`;
 }
 
+
+//Paris:
+
+let Paris = {
+    name: 'Paris',
+    minHourlyCust: 20,
+    maxHourlyCust: 38,
+    AvgCookieSale: 2.3,
+    getRandoNumOfCustArr: [],
+    avgAmountPerHourArr: [],
+
+
+
+    getRandoNumOfCust: function () {
+        for (let i = 0; i < workingHours.length; i++) {
+
+            this.getRandoNumOfCustArr.push(Math.floor(Math.random() * (this.maxHourlyCust - this.minHourlyCust)) + this.minHourlyCust);
+            console.log(this.getRandoNumOfCustArr[i]);
+
+        }
+
+    },
+    avgAmountperHour: function () {
+        for (let i = 0; i < workingHours.length; i++) {
+
+            this.avgAmountPerHourArr.push(Math.floor(this.getRandoNumOfCustArr[i] * this.AvgCookieSale));
+
+            console.log(this.avgAmountPerHourArr[i]);
+
+            // console.log(i);
+
+
+        }
+
+    }
+}
+
+
+Paris.getRandoNumOfCust();
+Paris.avgAmountperHour();
+
+
+let parisDiv = document.getElementById('Paris');
+
+let parisTitle = document.createElement('h2');
+
+parisDiv.appendChild(parisTitle);
+
+parisTitle.textContent = `${Paris.name}`;
+
+let parisUlElement = document.createElement('ul');
+parisDiv.appendChild(parisUlElement);
+
+
+
+for (let i = 0; i < workingHours.length; i++) {
+
+    let liElement = document.createElement('li');
+    parisUlElement.appendChild(liElement);
+    liElement.textContent = `${workingHours[i]}  ${Dubai.avgAmountPerHourArr[i]} cookies`;
+}
