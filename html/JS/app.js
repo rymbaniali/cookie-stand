@@ -11,7 +11,7 @@ let table = document.createElement('table');
 parent.appendChild(table);
 
 let myTotalSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-let rowSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ];
+let rowSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 let resturant = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima'];
 
@@ -49,7 +49,7 @@ Cookiestand.prototype.getRandoNumOfCust = function () {
 Cookiestand.prototype.avgAmountperHour = function () {
     for (let i = 0; i < workingHours.length; i++) {
 
-        
+
         let mathFloorFactor = Math.floor(this.getRandoNumOfCustArr[i] * this.AvgCookieSale);
 
         // console.log(this.avgAmountPerHourArr[i]);
@@ -60,10 +60,14 @@ Cookiestand.prototype.avgAmountperHour = function () {
         // // console.log("this is total sum ", this.totalSum);
         myTotalSum[i] = myTotalSum[i] + mathFloorFactor;
         // rowSum[i]=this.totalSum[i]+this.avgAmountPerHourArr[i]+mathFloorFactor;
-        
+
         // this.totalSum+=this.avgAmountPerHourArr[i];
-        
-     
+        // for (let k = 0; k < workingHours.length; k++) {
+
+        //     rowSum[k]=rowSum[k]+this.avgAmountPerHourArr[i];
+        //     console.log('sum',rowSum[k]);
+        // }
+
     }
 
 }
@@ -89,6 +93,18 @@ let header = function () {
 }
 header();
 
+// let totalRowssum= function (){
+// for (let i = 0; i < resturant.length; i++) {
+//    let sum1= Cookiestand.avgAmountPerHourArr[i];
+//     for (let k = 0; k < workingHours.length; k++) {
+//         rowSum[k]=rowSum[k]+sum1[;]
+//         console.log('sum',rowSum[k]);
+//     }
+
+// }
+
+
+// }
 
 
 Cookiestand.prototype.render = function () {
@@ -117,105 +133,127 @@ Cookiestand.prototype.render = function () {
         for (let j = 0; j < workingHours.length; j++) {
 
             this.total = tableCols[j] + this.total;
-        
-        //   for (let k = 0; k < resturant.length; k++) {
-         
-              
-        //    let dailylocTotCOL = document.createElement('td')
-        //         rowsOfTable.appendChild(dailylocTotCOL);
-        //         dailylocTotCOL.textContent = `${ rowSum[j]}`;
-           
-        //     for (let d = 0; d < workingHours.length; d++) {
-                
-        //       for (let k = 0; k < resturant.length; k++) {
-                
-                  
-        //       }
-                
-        //     }
-    // }
+
+            //   for (let k = 0; k < resturant.length; k++) {
+
+
+            // if (j === 14) {
+
+            //     for (let k = 0; k < resturant.length; k++) {
+
+            //         tableCols.textContent = `${rowSum[k]}`;
+                    // let dailylocTotCOL = document.createElement('td')
+                    // rowsOfTable.appendChild(dailylocTotCOL);
+
+
+                    //    dailylocTotCOL.textContent = `${ rowSum[k]}`;
+                }
+                //   }  for (let d = 0; d < workingHours.length; d++) {
+
+                //       for (let k = 0; k < resturant.length; k++) {
+
+
+                //       }
+
+                //     }
+                // }
+            }
+
         }
 
-    }
+
+    // let SeattleRow=[0,0,0,0,0,0,0,0,0,0,0,0,0];
+    // for (let i = 0; i <1; i++) {
+
+       
+    //     for (let j = 0; j < workingHours.length; j++) {
+    //         let SeattleRowSum= SeattleRow.push(SeattleRow+ Cookiestand.avgAmountPerHourArr[j]);
+
+      
+    //     console.log(`SeattleRow` ,SeattleRowSum);
+    // }
+
+    // }
 
 
+
+
+
+
+
+// for (let i = 0; i < tablesRow.length; i++) {
+
+//     let rowsOfTable = document.createElement('tr');
+//     table.appendChild(rowsOfTable);
+//     rowsOfTable.textcontnt = tablesRow[i];
+
+//     for (let j = 0; j < tablesCol.length; j++) {
+
+//         let colOfTable = document.createElement('td')
+
+//         rowsOfTable.appendChild(colOfTable);
+
+//         colOfTable.textcontnt = tablesCol[i];
+
+//         if (j === 0 || j === 15) {
+//             let colOfTable = document.createElement('th');
+
+//         }
+
+//     }
+// }
+
+
+let Seattle = new Cookiestand('Seattle', 23, 65, 6.3);
+let Tokyo = new Cookiestand('Tokyo', 3, 24, 1.2);
+let Dubai = new Cookiestand('Dubai', 11, 38, 3.7);
+let Paris = new Cookiestand('Paris', 20, 38, 2.3);
+let Lima = new Cookiestand('Lima', 2, 16, 4.6);
+
+for (let i = 0; i < shops.length; i++) {
+
+
+    shops[i].getRandoNumOfCust();
+    shops[i].avgAmountperHour();
+    shops[i].render();
+    // shops[i].header();
+    // console.log('this is from for loop', shops[i]);
 }
 
+let footer = function () {
+
+    let firstRowInFooter = document.createElement('tr');
+    table.appendChild(firstRowInFooter);
+
+    let firstColInFooter = document.createElement('th')
+    firstRowInFooter.appendChild(firstColInFooter);
+
+    firstColInFooter.textContent = `total`;
 
 
-    // for (let i = 0; i < tablesRow.length; i++) {
-
-    //     let rowsOfTable = document.createElement('tr');
-    //     table.appendChild(rowsOfTable);
-    //     rowsOfTable.textcontnt = tablesRow[i];
-
-    //     for (let j = 0; j < tablesCol.length; j++) {
-
-    //         let colOfTable = document.createElement('td')
-
-    //         rowsOfTable.appendChild(colOfTable);
-
-    //         colOfTable.textcontnt = tablesCol[i];
-
-    //         if (j === 0 || j === 15) {
-    //             let colOfTable = document.createElement('th');
-
-    //         }
-
-    //     }
-    // }
-
-
-    let Seattle = new Cookiestand('Seattle', 23, 65, 6.3);
-    let Tokyo = new Cookiestand('Tokyo', 3, 24, 1.2);
-    let Dubai = new Cookiestand('Dubai', 11, 38, 3.7);
-    let Paris = new Cookiestand('Paris', 20, 38, 2.3);
-    let Lima = new Cookiestand('Lima', 2, 16, 4.6);
-
-    for (let i = 0; i < shops.length; i++) {
-
-
-        shops[i].getRandoNumOfCust();
-        shops[i].avgAmountperHour();
-        shops[i].render();
-        // shops[i].header();
-        // console.log('this is from for loop', shops[i]);
+    for (let i = 0; i < workingHours.length; i++) {
+        let lastRow = document.createElement('tr');
+        table.appendChild(lastRow);
     }
 
-    let footer = function () {
+    for (let j = 0; j < workingHours.length; j++) {
 
-        let firstRowInFooter = document.createElement('tr');
-        table.appendChild(firstRowInFooter);
+        let lastcol = document.createElement('th');
 
-        let firstColInFooter = document.createElement('th')
-        firstRowInFooter.appendChild(firstColInFooter);
+        firstRowInFooter.appendChild(lastcol);
 
-        firstColInFooter.textContent = `total`;
-
-
-        for (let i = 0; i < workingHours.length; i++) {
-            let lastRow = document.createElement('tr');
-            table.appendChild(lastRow);
-        }
-
-        for (let j = 0; j < workingHours.length; j++) {
-
-            let lastcol = document.createElement('th');
-
-            firstRowInFooter.appendChild(lastcol);
-
-            for (let k = 0; k < myTotalSum.length; k++) {
+        for (let k = 0; k < myTotalSum.length; k++) {
 
 
 
-                lastcol.textContent = `${myTotalSum[j]}`;
+            lastcol.textContent = `${myTotalSum[j]}`;
 
-                // console.log(`footer    `, myTotalSum);
-            }
+            // console.log(`footer    `, myTotalSum);
         }
     }
+}
 
-    footer();
+footer();
 
 
 // Cookiestand.prototype.getRandoNumOfCust();
