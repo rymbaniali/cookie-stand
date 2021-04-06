@@ -1,8 +1,5 @@
-table, tr, td {
-    border-style: solid ;
-    border-color: black;
-    border-width: 2px;
-    border-collapse: collapse;
-}
+#parent td {
+    border: 1px solid black ;}
+
 
 
