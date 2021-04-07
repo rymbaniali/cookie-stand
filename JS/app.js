@@ -9,7 +9,7 @@ let table = document.createElement('table');
 //append the table to parent
 parent.appendChild(table);
 
-//footer sum 
+//footer sum
 let myTotalSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 
