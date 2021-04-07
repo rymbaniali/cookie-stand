@@ -1,6 +1,18 @@
 *{
     box-sizing: border-box;
 }
+
+#parent{
+ margin-left: 10%;
+}
+table{
+  background-color: rgb(236, 77, 109);
+  font-family: cursive;
+  font-size: 25px;
+  color: white;
+  border-width: 3px;
+  text-align: center;
+}
 #parent td  {
     border-collapse: collapse;
     border: 1px solid black ;
@@ -224,4 +236,15 @@ footer  {
   img:hover {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+  }
+
+  #shopsForm {
+    border-style: solid;
+  border-width: 1px ;
+  background-color: black;
+  color: crimson;
+  font-family: cursive;
+  font-size:25px;
+  margin-bottom: 30px;
+
   }
