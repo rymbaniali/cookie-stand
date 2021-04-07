@@ -35,6 +35,7 @@ function Cookiestand(name, minHourlyCust, maxHourlyCust, AvgCookieSale) {
 
 // calculate random customer
 Cookiestand.prototype.getRandoNumOfCust = function () {
+  this.getRandoNumOfCustArr=[];
   for (let i = 0; i < workingHours.length; i++) {
 
     this.getRandoNumOfCustArr.push(Math.floor(Math.random() * (this.maxHourlyCust - this.minHourlyCust)) + this.minHourlyCust);
@@ -47,6 +48,7 @@ Cookiestand.prototype.getRandoNumOfCust = function () {
 
 // calculate avg cookies amount
 Cookiestand.prototype.avgAmountperHour = function () {
+  this.avgAmountPerHourArr=[];
   for (let i = 0; i < workingHours.length; i++) {
     let mathFloorFactor = Math.floor(this.getRandoNumOfCustArr[i] * this.AvgCookieSale);
     this.avgAmountPerHourArr.push(mathFloorFactor);
@@ -57,7 +59,7 @@ Cookiestand.prototype.avgAmountperHour = function () {
     myTotalSum[i] = myTotalSum[i] + mathFloorFactor;
 
   }
-  console.log("this is the total  ", this.total);
+  // console.log('this is the total  ', this.total);
 
 };
 
@@ -102,12 +104,14 @@ Cookiestand.prototype.render = function () {
     tableCols.textContent = `${this.avgAmountPerHourArr[i]}`;
   }
 
+
   let dailylocTotCOL = document.createElement('td');
   rowsOfTable.appendChild(dailylocTotCOL);
   dailylocTotCOL.textContent = this.total;
 
   totalOfTotal += this.total;
-  console.log(this);
+  // console.log(this);
+
 
 };
 
@@ -121,22 +125,19 @@ let Lima = new Cookiestand('Lima', 2, 16, 4.6);
 
 
 
+
 let footer = function () {
 
   let firstRowInFooter = document.createElement('tr');
   table.appendChild(firstRowInFooter);
 
-  let firstColInFooter = document.createElement('th')
+  let firstColInFooter = document.createElement('th');
   firstRowInFooter.appendChild(firstColInFooter);
-
-  firstColInFooter.textContent = `total`;
-
-
+  firstColInFooter.textContent = 'total';
   for (let i = 0; i < workingHours.length; i++) {
     let lastRow = document.createElement('tr');
     table.appendChild(lastRow);
   }
-
   for (let j = 0; j < workingHours.length; j++) {
 
     let lastcol = document.createElement('th');
@@ -150,8 +151,6 @@ let footer = function () {
     }
   }
 
-  console.log(totalOfTotal);
-  
   let totalOfTotalCOL = document.createElement('th');
   firstRowInFooter.appendChild(totalOfTotalCOL);
   totalOfTotalCOL.textContent = totalOfTotal;
@@ -160,10 +159,60 @@ let footer = function () {
 };
 
 
+
+
+
+
+
+// get elemnt for the form
+let shopsForm = document.getElementById('shopsForm');
+
+// creat event listener
+shopsForm.addEventListener('submit', submitter);
+
+// creat event function
+
+function submitter(event) {
+
+  // to avoid the deafult value
+  event.preventDefault();
+
+  // console.log('this is event', event);
+
+
+  let shopName = event.target.shopName.value;
+  let minValue = parseInt(event.target.minValue.value);
+  let maxValue = parseInt(event.target.maxValue.value);
+  let avgValue = parseInt(event.target.avgValue.value);
+
+
+  // console.log('the summation ', minValue + maxValue);
+
+  // new instance
+  let addedShop = new Cookiestand(shopName, minValue, maxValue, avgValue);
+
+  table.textContent = '';
+  addedShop.getRandoNumOfCust();
+  addedShop.avgAmountperHour();
+
+  header();
+  for (let i = 0; i < shops.length; i++) {
+
+    shops[i].getRandoNumOfCust();
+    shops[i].avgAmountperHour();
+    shops[i].render();
+    console.log('this is shops' , shops[i]);
+  }
+  footer();
+
+
+
+}
+
+
 header();
 
 for (let i = 0; i < shops.length; i++) {
-
 
   shops[i].getRandoNumOfCust();
   shops[i].avgAmountperHour();
